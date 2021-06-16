@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>錯誤</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--移動端響應-->
+  <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+  <!-- 引入Bootstrap css -->
+</head>
+<body>
+<div class="container" style="margin-top: 150px;max-width: 600px;">
+  <div class="jumbotron" >
+    <h2>Error</h2>
+    <p>對不起，服務異常，請聯繫管理員</p>
+  </div>
+<!--打印錯誤信息到前端原始碼，隱藏在畫面上-->
+  <div th:utext="'&lt;!--'" th:remove="tag"></div>
+  <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+  <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
+  <ul th:remove="tag">
+    <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
+  </ul>
+  <div th:utext="'--&gt;'" th:remove="tag"></div>
+
+
+</div>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="../static/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+  <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
